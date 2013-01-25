@@ -4,10 +4,11 @@
 
 * right now queries are hard coded in clients
 
-    ./server.sh [db-dir]
-    ./client.sh
-    ruby client.rb
-
+```sh
+./server.sh [db-dir]
+./client.sh
+ruby client.rb
+```
 ## Ideas:
 
 Write a Cypher only endpoint for Neo4j that uses a fast transport and serialization across multiple client languages.
@@ -44,39 +45,44 @@ Header with Columns, optional Footer with time, bytes, tx-id, error, exception, 
 
 * messagepack-lite (source, build, install in repo)
 
-    hg clone https://bitbucket.org/sirbrialliance/msgpack-java-lite
-    cd msgpack-java-lite
-    ant
-    mvn install:install-file -DgroupId=net.asdfa -DartifactId=msgpack -Dversion=0.0.1 -Dfile=dist/msgpack-java-lite.jar  -Dpackaging=jar -DgeneratePom=true
-
+```sh
+hg clone https://bitbucket.org/sirbrialliance/msgpack-java-lite
+cd msgpack-java-lite
+ant
+mvn install:install-file -DgroupId=net.asdfa -DartifactId=msgpack -Dversion=0.0.1 -Dfile=dist/msgpack-java-lite.jar  -Dpackaging=jar -DgeneratePom=true
+```
 ## Transport
 
 * fast, lightweight, portable
 
 ### ZeroMQ
 
-    brew install zeromq
+```sh
+brew install zeromq
+```
 
 #### Java
 
-   git clone https://github.com/zeromq/jzmq
-   cd jzmq
+```sh
+git clone https://github.com/zeromq/jzmq
+cd jzmq
 
-   ./autogen.sh
-   ./configure
-   make
-   mvn clean install
-   mvn install:install-file -DgroupId=org.zeromq -DartifactId=zmq -Dversion=2.1.0 -Dfile=src/zmq.jar  -Dpackaging=jar -DgeneratePom=true
-
+./autogen.sh
+./configure
+make
+make install
+mvn clean install
+mvn install:install-file -DgroupId=org.zeromq -DartifactId=zmq -Dversion=2.1.0 -Dfile=src/zmq.jar  -Dpackaging=jar -DgeneratePom=true
+```
 
 #### Ruby
+```sh
+# didn't work: 
+sudo gem install zmq -- --with-zmq-dir=/usr/local/ --with-zmq-lib=/usr/local/lib/
 
-    # didn't work: 
-    sudo gem install zmq -- --with-zmq-dir=/usr/local/ --with-zmq-lib=/usr/local/lib/
-
-    # did work https://github.com/chuckremes/ffi-rzmq
-    sudo gem install ffi ffi-rzmq zmqmachine
-
+# did work https://github.com/chuckremes/ffi-rzmq
+sudo gem install ffi ffi-rzmq zmqmachine
+```
 ### Websockets
 
 ## Alternatives, Resources
