@@ -5,4 +5,5 @@ target
 .idea
 .DS_Store
 .settings
+/graph.db
 

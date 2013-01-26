@@ -9,6 +9,7 @@
 ./client.sh
 ruby client.rb
 ```
+
 ## Ideas:
 
 Write a Cypher only endpoint for Neo4j that uses a fast transport and serialization across multiple client languages.
@@ -43,6 +44,8 @@ Header with Columns, optional Footer with time, bytes, tx-id, error, exception, 
 
 ### MessagePack
 
+#### Java
+
 * messagepack-lite (source, build, install in repo)
 
 ```sh
@@ -51,6 +54,26 @@ cd msgpack-java-lite
 ant
 mvn install:install-file -DgroupId=net.asdfa -DartifactId=msgpack -Dversion=0.0.1 -Dfile=dist/msgpack-java-lite.jar  -Dpackaging=jar -DgeneratePom=true
 ```
+
+#### PHP
+
+* native pecl extension
+
+```sh
+git clone https://github.com/msgpack/msgpack-php.git
+cd msgpack-php
+phpize
+./configure && make && make install
+```
+
+> add `extension=msgpack.so` to your php.ini
+
+#### Ruby
+
+````sh
+gem install msgpack
+```
+
 ## Transport
 
 * fast, lightweight, portable
@@ -75,7 +98,17 @@ mvn clean install
 mvn install:install-file -DgroupId=org.zeromq -DartifactId=zmq -Dversion=2.1.0 -Dfile=src/zmq.jar  -Dpackaging=jar -DgeneratePom=true
 ```
 
+#### PHP
+
+```sh
+pear channel-discover pear.zero.mq
+pecl install pear.zero.mq/zmq-beta
+```
+
+> add `extension=zmq.so` to your php.ini
+
 #### Ruby
+
 ```sh
 # didn't work: 
 sudo gem install zmq -- --with-zmq-dir=/usr/local/ --with-zmq-lib=/usr/local/lib/
@@ -83,6 +116,7 @@ sudo gem install zmq -- --with-zmq-dir=/usr/local/ --with-zmq-lib=/usr/local/lib
 # did work https://github.com/chuckremes/ffi-rzmq
 sudo gem install ffi ffi-rzmq zmqmachine
 ```
+
 ### Websockets
 
 ## Alternatives, Resources
